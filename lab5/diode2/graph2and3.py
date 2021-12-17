@@ -11,6 +11,7 @@ columns = [[chr(i) for i in range(ord('A'), ord('F')+1)]] * 4
 rows = [[2, 22], [2, 22], [2, 30], [2, 22]]
 
 
+# all_sheets = io.get_all_sheets_from_file('../../data/lab5/dataBron.xlsx', columns, rows)
 all_sheets = io.get_all_sheets_from_file('../../data/lab5/data.xlsx', columns, rows)
 peg.get_graph_with_errors(plt, all_sheets[index1][2], all_sheets[index1][4], all_sheets[index1][3],
                           all_sheets[index1][5], 2, 0.5, 2, 'k', True, f'Ud, мВ', f'Id, мА')
