@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-import library.ploterrorgraph as peg
+import library.plotio as peg
 import library.xlsxio as io
 
 index1 = 1

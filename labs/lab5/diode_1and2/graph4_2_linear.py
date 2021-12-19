@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import library.ploterrorgraph as peg
+import library.plotio as peg
 import library.xlsxio as io
 
 index1 = 0
