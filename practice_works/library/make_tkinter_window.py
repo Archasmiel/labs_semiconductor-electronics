@@ -2,13 +2,6 @@ import tkinter as tk
 from tkscrolledframe import ScrolledFrame
 
 
-def list_to_str(lst):
-    res = ''
-    for i in lst:
-        res += str(i) + ' '
-    return res
-
-
 def make_window(root, title, size, labels):
     root.title(title)
     root.geometry(size)
