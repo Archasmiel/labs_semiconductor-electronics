@@ -1,5 +1,4 @@
 import practice_works.library.calc as calculus
-import math
 
 calc1 = calculus.Calculus1()
 calc2 = calculus.Calculus2()
@@ -8,11 +7,11 @@ materials = ["Германій", "Кремній", "Арсенід галію"]
 
 # choose correct index from materials list
 mat = 1
-# True if base has ntype semiconductor, False otherwise
-is_base_ntype = True
 # write here your acceptor and donor concentrations in cm^-3
 na = 2.16 * (10**17)
 nd = 3.62 * (10**16)
+# True if base has ntype semiconductor, False otherwise
+is_base_ntype = na > nd
 
 
 # table values from Borisov's book
@@ -53,31 +52,32 @@ p_self = calc2.get_p_self(ni2)
 sigma_self = calc1.get_sigma(n_self, tor_n, p_self, tor_p)
 ro_self = calc1.get_ro(sigma_self)
 
+with open(f'materials.txt', 'w', encoding='utf-8') as f:
 
-print(f'Material is {material}\n')
+    f.write(f'Material is {material}\n\n')
 
-if is_base_ntype:
-    print('Base: n-type\nEmitter: p-type\nJunction: self\n')
-else:
-    print('Base: p-type\nEmitter: n-type\nJunction: self\n')
+    if is_base_ntype:
+        f.write('Base: n-type\nEmitter: p-type\nJunction: self\n\n')
+    else:
+        f.write('Base: p-type\nEmitter: n-type\nJunction: self\n\n')
 
-print('n-type semiconductor:')
-print(f'n: {n_ntype} cm^-3\np: {p_ntype} cm^-3\nσ: {sigma_ntype} Sm/sm\nρ: {ro_ntype} Ohm*sm\n')
+    f.write(f'n-type semiconductor{" (base)" if na > nd else " (emitter)"}:\n')
+    f.write(f'n: {n_ntype} cm^-3\np: {p_ntype} cm^-3\nσ: {sigma_ntype} Sm/sm\nρ: {ro_ntype} Ohm*sm\n\n')
 
-print('p-type semiconductor:')
-print(f'n: {n_ptype} cm^-3\np: {p_ptype} cm^-3\nσ: {sigma_ptype} Sm/sm\nρ: {ro_ptype} Ohm*sm\n')
+    f.write(f'p-type semiconductor{" (base)" if na < nd else " (emitter)"}:\n')
+    f.write(f'n: {n_ptype} cm^-3\np: {p_ptype} cm^-3\nσ: {sigma_ptype} Sm/sm\nρ: {ro_ptype} Ohm*sm\n\n')
 
-print('self semiconductor:')
-print(f'n: {n_self} cm^-3\np: {p_self} cm^-3\nσ: {sigma_self} Sm/sm\nρ: {ro_self} Ohm*sm\n')
+    f.write('self semiconductor:\n')
+    f.write(f'n: {n_self} cm^-3\np: {p_self} cm^-3\nσ: {sigma_self} Sm/sm\nρ: {ro_self} Ohm*sm\n\n')
 
-phiT = calc2.get_phiT(300)
-phi0 = calc2.get_phi0(phiT, na, nd, ni2)
-# junction width calc - don't touch 10**6 if you using cm^-3 - its converting to m^-3
-j_width = calc2.get_junction_width(11.9, na*10**6, nd*10**6, phi0)
-jn_width = calc2.get_junction_n_width(j_width, na, nd)
-jp_width = calc2.get_junction_p_width(j_width, na, nd)
-print(f'φT = {phiT} V')
-print(f'φ0 = {phi0} V')
-print(f'junction_width = {j_width} m')
-print(f'junction_n_width  = {jn_width} m')
-print(f'junction_p_width  = {jp_width} m')
+    phiT = calc2.get_phiT(300)
+    phi0 = calc2.get_phi0(phiT, na, nd, ni2)
+    # junction width calc - don't touch 10**6 if you using cm^-3 - its converting to m^-3
+    j_width = calc2.get_junction_width(11.9, na*10**6, nd*10**6, phi0)
+    jn_width = calc2.get_junction_n_width(j_width, na, nd)
+    jp_width = calc2.get_junction_p_width(j_width, na, nd)
+    f.write(f'φT = {phiT} V\n')
+    f.write(f'φ0 = {phi0} V\n')
+    f.write(f'junction_width = {j_width} m\n')
+    f.write(f'junction_n_width  = {jn_width} m\n')
+    f.write(f'junction_p_width  = {jp_width} m\n')

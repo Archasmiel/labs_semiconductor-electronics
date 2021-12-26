@@ -1,0 +1,29 @@
+Material is Кремній
+
+Base: n-type
+Emitter: p-type
+Junction: self
+
+n-type semiconductor (base):
+n: 3.62000000000058e+16 cm^-3
+p: 5800.0 cm^-3
+σ: 8.699819122621811 Sm/sm
+ρ: 0.11494491849833266 Ohm*sm
+
+p-type semiconductor (emitter):
+n: 960.0 cm^-3
+p: 2.1600000000000096e+17 cm^-3
+σ: 15.573156882480298 Sm/sm
+ρ: 0.06421305632161156 Ohm*sm
+
+self semiconductor:
+n: 14491376746.189438 cm^-3
+p: 14491376746.189438 cm^-3
+σ: 4.527460317360954e-06 Sm/sm
+ρ: 220874.38208246906 Ohm*sm
+
+φT = 0.025851999786435535 V
+φ0 = 0.8078297810668496 V
+junction_width = 1.8512239347032953e-07 m
+junction_n_width  = 2.657188994300527e-08 m
+junction_p_width  = 1.5855050352732425e-07 m

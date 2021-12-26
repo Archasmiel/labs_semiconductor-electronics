@@ -2,7 +2,8 @@ import tkinter as tk
 from tkscrolledframe import ScrolledFrame
 
 
-def make_window(root, title, size, labels):
+def make_window(title, size, labels):
+    root = tk.Tk()
     root.title(title)
     root.geometry(size)
 
@@ -22,3 +23,5 @@ def make_window(root, title, size, labels):
         w.insert(1.0, i)
         w.tag_add("center", "1.0", "end")
         w.pack()
+
+    root.mainloop()

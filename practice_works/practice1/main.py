@@ -1,10 +1,7 @@
-import practice_works.library.make_tkinter_window as win
-import practice_works.library.calc as calculus1
-import tkinter as tk
+import practice_works.library.calc as calculus
 
 labels = []
-root = tk.Tk()
-calc = calculus1.Calculus1()
+calc = calculus.Calculus1()
 
 na = 2.16 * (10**17)
 nd = 3.62 * (10**16)
@@ -74,11 +71,15 @@ for cur_material in range(3):
         ros[1].append(compensate_ro)
 
     labels.append('----------------------------------------------------------')
-    labels.append('                  Власний     Компенсований')
+    labels.append('                  Власний             Компенсований')
     for i in range(len(ros[1])):
         labels.append(str(temps[i]) + ' :    ' + str(ros[0][i]) + ' Ом*см      ' + str(ros[1][i]) + ' Ом*см')
 
-    win.make_window(root, 'Test', '800x700', labels)
-    labels.clear()
+    labels.append('\n\n\n#############################################################################\n\n\n')
 
-root.mainloop()
+
+with open(f'materials.txt', 'w', encoding='utf-8') as f:
+    for i in labels:
+        f.write(str(i) + '\n')
+
+
