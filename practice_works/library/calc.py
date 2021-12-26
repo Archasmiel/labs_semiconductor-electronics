@@ -90,8 +90,8 @@ class Calculus2:
 
     @staticmethod
     def get_junction_width(epsilon, na, nd, phi0):
-        nand = (1/na + 1/nd)
-        return math.sqrt(2*const.epsilon_0*epsilon*nand*phi0/const.e)
+        print(na, nd)
+        return math.sqrt(2*const.epsilon_0*epsilon*(1/na + 1/nd)*phi0/const.e)
 
     @staticmethod
     def get_junction_n_width(junction_width, na, nd):
