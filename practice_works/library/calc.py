@@ -91,15 +91,15 @@ class Calculus2:
     @staticmethod
     def get_junction_width(epsilon, na, nd, phi0):
         print(na, nd)
-        return math.sqrt(2*const.epsilon_0*epsilon*(1/na + 1/nd)*phi0/const.e)
+        return math.sqrt(2 * const.epsilon_0 * epsilon * (1 / na + 1 / nd) * phi0 / const.e)
 
     @staticmethod
     def get_junction_n_width(junction_width, na, nd):
-        return junction_width*nd/(na+nd)
+        return junction_width * nd / (na + nd)
 
     @staticmethod
     def get_junction_p_width(junction_width, na, nd):
-        return junction_width*na/(na+nd)
+        return junction_width * na / (na + nd)
 
 
 class Calculus3:
@@ -117,5 +117,6 @@ class Calculus3:
         return const.e * S * Lp * self.get_p_n0(ni2, Nd) / t_p
 
     # струм термогенерації
-    def get_thermal_generation_current(self, S, l, ni2, t_ef):
+    @staticmethod
+    def get_thermal_generation_current(S, l, ni2, t_ef):
         return 0.5 * const.e * S * l * math.sqrt(ni2) / t_ef
