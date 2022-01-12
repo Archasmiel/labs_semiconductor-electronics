@@ -8,8 +8,8 @@ materials = ["Германій", "Кремній", "Арсенід галію"]
 # choose correct index from materials list
 mat = 1
 # write here your acceptor and donor concentrations in cm^-3
-na = 2.16 * (10**17)
-nd = 3.62 * (10**16)
+na = 3.12 * (10**15)
+nd = 4.25 * (10**16)
 # True if base has ntype semiconductor, False otherwise
 is_base_ntype = na > nd
 
@@ -54,21 +54,33 @@ ro_self = calc1.get_ro(sigma_self)
 
 with open(f'materials.txt', 'w', encoding='utf-8') as f:
 
-    f.write(f'Material is {material}\n\n')
-
     if is_base_ntype:
-        f.write('Base: n-type\nEmitter: p-type\nJunction: self\n\n')
+        f.write('База: n-тип напівпровідника\nЕмітер: p-тип напівпровідника\npn-перехід: власний напівпровідник\n\n\n')
     else:
-        f.write('Base: p-type\nEmitter: n-type\nJunction: self\n\n')
+        f.write('База: p-тип напівпровідника\nЕмітер: n-тип напівпровідника\npn-перехід: власний напівпровідник\n\n\n')
 
-    f.write(f'n-type semiconductor{" (base)" if na > nd else " (emitter)"}:\n')
-    f.write(f'n: {n_ntype} cm^-3\np: {p_ntype} cm^-3\nσ: {sigma_ntype} Sm/sm\nρ: {ro_ntype} Ohm*sm\n\n')
+    f.write(f'Матеріал: {material}\n')
+    f.write(f'Ефективна маса електрона: {mn}\n')
+    f.write(f'Ефективна маса дірки: {mp}\n')
+    f.write(f'Рухливість електрона: {tor_n} см^2/(В*с)\n')
+    f.write(f'Рухливість дірки: {tor_p} см^2/(В*с)\n')
+    f.write(f'Ширина забороненої зони: {delta_e} еВ\n')
 
-    f.write(f'p-type semiconductor{" (base)" if na < nd else " (emitter)"}:\n')
-    f.write(f'n: {n_ptype} cm^-3\np: {p_ptype} cm^-3\nσ: {sigma_ptype} Sm/sm\nρ: {ro_ptype} Ohm*sm\n\n')
+    f.write(f'Концентрація акцептора: {"{:.2e}".format(na)} cm^-3\n')
+    f.write(f'Концентрація донора: {"{:.2e}".format(nd)} cm^-3\n\n\n')
+    f.write(f'#######################################\n\n')
 
-    f.write('self semiconductor:\n')
-    f.write(f'n: {n_self} cm^-3\np: {p_self} cm^-3\nσ: {sigma_self} Sm/sm\nρ: {ro_self} Ohm*sm\n\n')
+    f.write(f'Напівпровідник n-типу {"(база)" if na > nd else "(емітер)"}:\n')
+    f.write(f'n: {"{:.2e}".format(n_ntype)} см^-3\np: {"{:.2e}".format(p_ntype)} см^-3\nσ: '
+            f'{"{:.2e}".format(sigma_ntype)} См/см\nρ: {"{:.2e}".format(ro_ntype)} Ом*см\n\n')
+
+    f.write(f'Напівпровідник p-типу {"(база)" if na < nd else "(емітер)"}:\n')
+    f.write(f'n: {"{:.2e}".format(n_ptype)} см^-3\np: {"{:.2e}".format(p_ptype)} см^-3\nσ: '
+            f'{"{:.2e}".format(sigma_ptype)} См/см\nρ: {"{:.2e}".format(ro_ptype)} Ом*см\n\n')
+
+    f.write('Власний напівпровідник:\n')
+    f.write(f'n: {"{:.2e}".format(n_self)} см^-3\np: {"{:.2e}".format(p_self)} см^-3\nσ: '
+            f'{"{:.2e}".format(sigma_self)} См/см\nρ: {"{:.2e}".format(ro_self)} Ом*см\n\n')
 
     phiT = calc2.get_phiT(300)
     phi0 = calc2.get_phi0(phiT, na, nd, ni2)
@@ -76,8 +88,8 @@ with open(f'materials.txt', 'w', encoding='utf-8') as f:
     j_width = calc2.get_junction_width(11.9, na*10**6, nd*10**6, phi0)
     jn_width = calc2.get_junction_n_width(j_width, na, nd)
     jp_width = calc2.get_junction_p_width(j_width, na, nd)
-    f.write(f'φT = {phiT} V\n')
-    f.write(f'φ0 = {phi0} V\n')
-    f.write(f'junction_width = {j_width} m\n')
-    f.write(f'junction_n_width  = {jn_width} m\n')
-    f.write(f'junction_p_width  = {jp_width} m\n')
+    f.write(f'φT: {phiT} B\n')
+    f.write(f'φ0: {phi0} B\n')
+    f.write(f'Ширина переходу: {"{:.2e}".format(j_width)} м\n')
+    f.write(f'Ширина переходу в n-типі: {"{:.2e}".format(jn_width)} м\n')
+    f.write(f'Ширина переходу в p-типі: {"{:.2e}".format(jp_width)} м\n')

@@ -3,8 +3,8 @@ import practice_works.library.calc as calculus
 labels = []
 calc = calculus.Calculus1()
 
-na = 2.16 * (10**17)
-nd = 3.62 * (10**16)
+na = 3.81 * (10**16)
+nd = 2.67 * (10**17)
 
 materials = ["Германій", "Кремній", "Арсенід галію"]
 temps = [i+273.15 for i in [20, 75, 130]]
@@ -14,14 +14,14 @@ tor_ns = [3900, 1500, 8500]
 tor_ps = [1900, 450, 400]
 delta_es = [0.67, 1.12, 1.42]
 
-for cur_material in range(3):
+for cur in range(3):
 
-    material = materials[cur_material]
-    mn = mns[cur_material]
-    mp = mps[cur_material]
-    tor_n = tor_ns[cur_material]
-    tor_p = tor_ps[cur_material]
-    delta_e = delta_es[cur_material]
+    material = materials[cur]
+    mn = mns[cur]
+    mp = mps[cur]
+    tor_n = tor_ns[cur]
+    tor_p = tor_ps[cur]
+    delta_e = delta_es[cur]
     ns = [[], []]
     ps = [[], []]
     sigmas = [[], []]
