@@ -3,8 +3,8 @@ import practice_works.library.calc as calculus
 labels = []
 calc = calculus.Calculus1()
 
-na = 3.81 * (10**16)
-nd = 2.67 * (10**17)
+na = 2.70 * (10**15)
+nd = 4.99 * (10**15)
 
 materials = ["Германій", "Кремній", "Арсенід галію"]
 temps = [i+273.15 for i in [20, 75, 130]]
